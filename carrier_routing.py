@@ -1,3 +1,8 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from interpret import interpret_rule
+
 import json
 
 shipments = [
@@ -91,10 +96,26 @@ def execute_carrier_routing(rule, shipments):
 
 
 if __name__ == "__main__":
-    rule = {"trigger": {"condition": "carrier_routing_rules"}}
+    english_rule = """
+    Route shipments based on weight and region. 
+    Hazmat shipments always use specialized carriers regardless of weight.
+    West and North hazmat uses Hazpac, South and East hazmat uses Hazco, all with compliance flags.
+    For standard freight: under 150 lbs uses common carrier, 151 to 2000 lbs uses private fleet,
+    2001 to 5000 lbs uses regional LTL carriers, over 5000 lbs uses FedEx Freight for West and South,
+    UPS Freight for North and East.
+    """
 
-    print("Running carrier routing rules against shipments...\n")
-    assignments = execute_carrier_routing(rule, shipments)
+    print("Input rule:")
+    print(english_rule.strip())
+    print("\nInterpreting rule...\n")
 
-    print(f"Carrier assignments generated: {len(assignments)}\n")
-    print(json.dumps(assignments, indent=2))
+    try:
+        interpreted_rule = interpret_rule(english_rule)
+        print("Interpreted as JSON:")
+        print(json.dumps(interpreted_rule, indent=2))
+        print("\nRunning carrier routing rules against shipments...\n")
+        assignments = execute_carrier_routing(interpreted_rule, shipments)
+        print(f"Carrier assignments generated: {len(assignments)}\n")
+        print(json.dumps(assignments, indent=2))
+    except Exception as e:
+        print(f"Error: {e}")
