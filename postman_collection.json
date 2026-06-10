@@ -1,0 +1,109 @@
+{
+  "info": {
+    "_postman_id": "b4ad73e2-95ff-4b47-a28b-011fa2f3a6e1",
+    "name": "English as Code - Supply Chain",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "13175030",
+    "_collection_link": "https://go.postman.co/collection/13175030-b4ad73e2-95ff-4b47-a28b-011fa2f3a6e1?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Interpret Plain English Rule - Carrier Routing",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": "Specifies that the request body is JSON",
+            "type": "text"
+          },
+          {
+            "key": "x-api-key",
+            "value": "{{ANTHROPIC_API_KEY}}",
+            "description": "Anthropic API key for authentication - stored as environment variable to protect credentials",
+            "type": "text"
+          },
+          {
+            "key": "anthropic-version",
+            "value": "2023-06-01",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"model\": \"claude-haiku-4-5-20251001\",\r\n  \"max_tokens\": 1024,\r\n  \"system\": \"You are a business rules interpreter for a supply chain automation system. Your job is to convert plain English business rules into structured JSON. Return ONLY valid JSON, no explanation, no markdown, no code blocks. Just the raw JSON object.\",\r\n  \"messages\": [\r\n    {\r\n      \"role\": \"user\",\r\n      \"content\": \"For any shipment over 5000 lbs going to the West region, use FedEx Freight. If the shipment is hazmat, route to a specialized carrier and require a compliance flag.\"\r\n    }\r\n  ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.anthropic.com/v1/messages",
+          "protocol": "https",
+          "host": [
+            "api",
+            "anthropic",
+            "com"
+          ],
+          "path": [
+            "v1",
+            "messages"
+          ]
+        },
+        "description": "StartFragmentSends a plain English business rule to the Anthropic Claude API and returns a structured JSON interpretation. Demonstrates the neurosymbolic interpret layer of the English as Code supply chain automation prototype. Part of the english-as-code-supply-chain project.EndFragment"
+      },
+      "response": []
+    },
+    {
+      "name": "Interpret Plain English Rule - Shipping Blackouts",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": "Specifies that the request body is JSON",
+            "type": "text"
+          },
+          {
+            "key": "x-api-key",
+            "value": "{{ANTHROPIC_API_KEY}}",
+            "description": "Anthropic API key for authentication - stored as environment variable to protect credentials",
+            "type": "text"
+          },
+          {
+            "key": "anthropic-version",
+            "value": "2023-06-01",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"model\": \"claude-haiku-4-5-20251001\",\r\n  \"max_tokens\": 1024,\r\n  \"system\": \"You are a business rules interpreter for a supply chain automation system. Your job is to convert plain English business rules into structured JSON. Return ONLY valid JSON, no explanation, no markdown, no code blocks. Just the raw JSON object.\",\r\n  \"messages\": [\r\n    {\r\n      \"role\": \"user\",\r\n      \"content\": \"For any shipment over 5000 lbs going to the West region, use FedEx Freight. If the shipment is hazmat, route to a specialized carrier and require a compliance flag.\"\r\n    }\r\n  ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.anthropic.com/v1/messages",
+          "protocol": "https",
+          "host": [
+            "api",
+            "anthropic",
+            "com"
+          ],
+          "path": [
+            "v1",
+            "messages"
+          ]
+        },
+        "description": "StartFragmentSends a plain English business rule to the Anthropic Claude API and returns a structured JSON interpretation. Demonstrates the neurosymbolic interpret layer of the English as Code supply chain automation prototype. Part of the english-as-code-supply-chain project.EndFragment"
+      },
+      "response": []
+    }
+  ]
+}
